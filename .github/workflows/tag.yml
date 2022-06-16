@@ -12,7 +12,6 @@ jobs:
         uses: actions/github-script@0.2.0
         with:
           github-token: ${{ secrets.TOKEN }}
-          script: |
-            return context.payload.ref.replace('');
-      - name: Echo
-        run: echo ${{ steps.tag.outputs.result }}
+      - name: Get the version
+        id: get_version
+        run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
