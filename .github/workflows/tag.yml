@@ -14,4 +14,4 @@ jobs:
           script: |
             return context.payload.ref.replace(/\/refs\/tags\//, '');
       - name: Echo
-        run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+        run: echo ${{ steps.tag.outputs.result }}
